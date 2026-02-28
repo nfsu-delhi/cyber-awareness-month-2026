@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /internal_staging/
+Disallow: /admin_vault/
+Disallow: /api_v1/debug
+
+# Rabbit hole for crawler bots:
+# Disallow: /flag{ye_baburao_ka_style_hai}
