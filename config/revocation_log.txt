@@ -1,5 +1,0 @@
-# Emergency Credential Revocation Registry
-# Date: 2026-04-20
-# Incident ID: INC-2026-042
-# Revoked Legacy Session Token: 317oJLwgtw2cU4hqDZiBPevHxNHbzGh9XtX2
-# Action Taken: Token expired and blacklisted from auth service.
