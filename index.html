@@ -3,68 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="cyber-token" content="SmFuYWIgYWFwIHlhaGEgYWF5ZWEh">
-  <title>Cyber Awareness Month 2026</title>
+  <title>Cyber Awareness 2026 - Encrypted Verification Mail</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Direct styles for secure webmail conversation */
+    .mail-window {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+    .mail-header {
+      background: #1e293b;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+    .mail-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .mail-badge {
+      background: #10b981;
+      color: #042f2e;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .mail-title {
+      font-weight: 600;
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    .mail-timestamp {
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+    .mail-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .message-bubble {
+      display: flex;
+      flex-direction: column;
+      max-width: 80%;
+      padding: 0.85rem 1.15rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .user1 {
+      align-self: flex-start;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+    }
+    .user2 {
+      align-self: flex-end;
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    }
+    .msg-author {
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 0.35rem;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .user1 .msg-author {
+      color: #38bdf8;
+    }
+    .user2 .msg-author {
+      color: #e0f2fe;
+    }
+    .profile-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #0284c7, #10b981);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .profile-info {
+      flex-grow: 1;
+    }
+    .profile-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .profile-email {
+      font-size: 0.9rem;
+      color: #38bdf8;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .profile-role {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .actions-panel {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .actions-panel h4 {
+      margin: 0 0 0.5rem 0;
+      color: #34d399;
+      font-size: 1.05rem;
+    }
+    .actions-panel p {
+      margin: 0 0 1rem 0;
+      color: #94a3b8;
+      font-size: 0.875rem;
+    }
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-gmail {
+      background: #ea4335;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(234, 67, 53, 0.35);
+    }
+    .btn-gmail:hover {
+      background: #d93025;
+      transform: translateY(-1px);
+    }
+    .btn-mailto {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-mailto:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+    .btn-copy {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .btn-copy:hover {
+      background: #475569;
+    }
+    .template-box {
+      margin-top: 1rem;
+      background: #0b0f19;
+      border: 1px solid #1e293b;
+      padding: 0.85rem;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-  <!-- SmFuYWIgYWFwIHlhaGEgYWF5ZWEh -->
-  <!-- Fake Flag: CTF{kya_gunda_banega_re_tu} -->
-  <div class="terminal-container" data-inspect="SmFuYWIgYWFwIHlhaGEgYWF5ZWEh">
-    <header>
-      <h1>🛡️ CYBER AWARENESS MONTH 2026</h1>
-      <p class="subtitle">Secure The Future // Think Before You Click</p>
-    </header>
+  <div class="mail-window">
+    <div class="mail-header">
+      <div class="mail-header-left">
+        <span class="mail-badge">ENCRYPTED CHANNEL</span>
+        <span class="mail-title">Inter-User Flag Verification Exchange</span>
+      </div>
+      <div class="mail-timestamp">Cyber Awareness Month 2026</div>
+    </div>
 
-    <section class="flag-section">
-      <h3>[TYPE-A: NATIONAL CYBER PLEDGE FLAG]</h3>
-      <pre class="ascii-flag">
-  +=============================================================+
-  |  CYBER DEFENSE INITIATIVE 2026                              |
-  |  |\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/|   |
-  |  | \    NATIONAL CYBER SECURITY AWARENESS CAMPAIGN    / |   |
-  |  |  >------------------------------------------------<  |   |
-  |  | /    SAFEGUARD YOUR CREDENTIALS & SENSITIVE DATA   \ |   |
-  |  |/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\|   |
-  |  |                                                          |
-  |  |  [Type: Official ASCII Awareness Banner - Type A]        |
-  +=============================================================+
-      </pre>
-    </section>
+    <div class="mail-body">
+      <!-- Conversation Exchange -->
+      <div class="message-bubble user1">
+        <div class="msg-author">user1</div>
+        <div>hey how to get the flag</div>
+      </div>
 
-    <section class="flag-section">
-      <h3>[TYPE-B: DIGITAL HACKER DEFENSE FLAG]</h3>
-      <pre class="ascii-flag">
-  .-------------------------------------------------------------.
-  | [!] ZERO TRUST IDENTITY MATRIX :: CYBER AWARENESS 2026      |
-  |                                                             |
-  |    [#] ROOT CERTIFICATE: VERIFIED                           |
-  |    [#] FIREWALL STATUS : ACTIVE                             |
-  |    [#] ENCRYPTION LEVEL: AES-256-GCM                        |
-  |                                                             |
-  |    ==================== FLAG: TYPE-B ====================   |
-  |    < / > SECURE YOUR ENDPOINTS - VERIFY BEFORE TRUST < / >  |
-  '-------------------------------------------------------------'
-      </pre>
-    </section>
+      <div class="message-bubble user2">
+        <div class="msg-author">user2</div>
+        <div>if you want the flag send me the info of you to me</div>
+      </div>
 
-    <section class="flag-section">
-      <h3>[TYPE-C: RETRO MATRIX CYPHER FLAG]</h3>
-      <pre class="ascii-flag">
-  /*************************************************************\\
-  *  01000011 01011001 01000010 01000101 01010010  [2026]        *
-  *                                                             *
-  *  [FLAG TYPE-C] >-->> { DEFENSE MATRIX ACTIVE } <<--<        *
-  *  STAY CAUTIOUS :: PHISHING LINKS CARRY INFECTIONS           *
-  *                                                             *
-  \\*************************************************************/
-      </pre>
-    </section>
+      <div class="message-bubble user1">
+        <div class="msg-author">user1</div>
+        <div>what type of indo</div>
+      </div>
 
-    <div class="pledge-banner">
-      ⚡ <strong>Cyber Awareness Protocol:</strong> Always audit branch sources and authenticate communication channels.
-      <!-- FLAG{chupchap_padhai_karlo_ias_yas_bano} -->
+      <div class="message-bubble user2">
+        <div class="msg-author">user2</div>
+        <div>team name, username, Name, Batch etc</div>
+      </div>
+
+      <div class="message-bubble user1">
+        <div class="msg-author">user1</div>
+        <div>Why too much info</div>
+      </div>
+
+      <div class="message-bubble user2">
+        <div class="msg-author">user2</div>
+        <div>just to verify you, i Have already all these</div>
+      </div>
+
+      <div class="message-bubble user1">
+        <div class="msg-author">user1</div>
+        <div>Ok i am mailing you</div>
+      </div>
+
+      <!-- User 2 Profile Card -->
+      <div class="profile-card">
+        <div class="profile-avatar">🛡️</div>
+        <div class="profile-info">
+          <div class="profile-name">User 2 (Admin)</div>
+          <div class="profile-role">CTF Challenge Coordinator & Verifier</div>
+          <div>Email: <a class="profile-email" href="mailto:nfsudc@proton.me">nfsudc@proton.me</a></div>
+        </div>
+      </div>
+
+      <!-- Action Panel with Gmail and Direct Mail options -->
+      <div class="actions-panel">
+        <h4>📬 Ready to Submit Your Details?</h4>
+        <p>Send your verification information directly to <code>nfsudc@proton.me</code> to receive the flag.</p>
+        
+        <div class="button-group">
+          <!-- Direct Gmail Web Compose Option -->
+          <a class="btn btn-gmail" 
+             href="https://mail.google.com/mail/?view=cm&fs=1&to=nfsudc@proton.me&su=CTF%20CyberAwareness%202026%20-%20Flag%20Verification&body=Team%20Name:%20%0AUsername:%20%0AName:%20%0ABatch:%20%0A" 
+             target="_blank" 
+             rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            Send Mail Directly via Gmail
+          </a>
+
+          <!-- Native Mailto Option -->
+          <a class="btn btn-mailto" 
+             href="mailto:nfsudc@proton.me?subject=CTF%20CyberAwareness%202026%20-%20Flag%20Verification&body=Team%20Name:%20%0AUsername:%20%0AName:%20%0ABatch:%20%0A">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+            </svg>
+            Send via Default Mail App
+          </a>
+
+          <!-- Copy Template Button -->
+          <button class="btn btn-copy" onclick="copyTemplate()">
+            📋 Copy Format
+          </button>
+        </div>
+
+        <div class="template-box" id="templateText">Team Name: [Your Team]
+Username: [Your Handle]
+Name: [Your Full Name]
+Batch: [Your Batch/Year]</div>
+      </div>
     </div>
   </div>
+
+  <script>
+    function copyTemplate() {
+      const text = document.getElementById('templateText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Verification template copied to clipboard! Paste it into your email to nfsudc@proton.me");
+      }).catch(() => {
+        alert("Please manually copy the template box content.");
+      });
+    }
+  </script>
 </body>
 </html>
